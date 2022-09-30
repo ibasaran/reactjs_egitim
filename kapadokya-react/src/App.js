@@ -11,6 +11,7 @@ import Urun from './components/Urun';
 import YasamDongusu from './components/YasamDongusu'
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { InputText } from 'primereact/inputtext';
 
 function App() {
 
@@ -51,6 +52,9 @@ function App() {
 
   const [urunler,setUrunler] = useState(urunlistsi)
   const [urunEkleDialogGoster, setUrunEkleDialogGoster] = useState(false)
+  const [urunAdi, setUrunAdi] = useState('')
+  const [urunResmi,setUrunResmi] = useState('')
+  const [urunAciklamasi,setUrunAciklamasi] = useState('')
 
   let items = [
     {
@@ -87,6 +91,21 @@ function App() {
     })
 
     setUrunler(pantolonUrunListesi)
+  }
+
+  const urunEkle = () => {
+    console.log('Ürün bilgileri', urunAdi, urunResmi,urunAciklamasi)
+    const urun = {
+      title: urunAdi,
+      imgSrc: urunResmi,
+      description: urunAciklamasi
+    }
+
+    const yeniListe = [...urunlistsi, urun]
+    urunlistsi = [...yeniListe]
+    setUrunler(yeniListe)
+    setUrunEkleDialogGoster(false)
+
   }
 
 
@@ -137,8 +156,26 @@ function App() {
      </div>
 
 
-      <Dialog visible={urunEkleDialogGoster}>
-            Merhaba Ürün Ekleme
+      <Dialog header="Ürün Ekle" visible={urunEkleDialogGoster}
+        onHide={() => setUrunEkleDialogGoster(false)}
+      >
+        <div className="field">
+            <label>Ürün Adı</label>
+            <InputText  value={urunAdi} onChange={(e) => setUrunAdi(e.target.value)}/>
+        </div>
+
+        <div className="field">
+            <label>Ürün Resmi</label>
+            <InputText  value={urunResmi} onChange={(e) => setUrunResmi(e.target.value)}/>
+        </div>
+
+        <div className="field">
+            <label>Ürün Açıklaması</label>
+            <InputText  value={urunAciklamasi} onChange={(e) => setUrunAciklamasi(e.target.value)}/>
+        </div>
+
+        <Button label='EKLE' onClick={urunEkle}></Button>
+       
       </Dialog>
 
     </div>
