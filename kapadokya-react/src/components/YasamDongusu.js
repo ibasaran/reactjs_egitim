@@ -1,8 +1,5 @@
 import React,{useEffect, useState} from 'react'
 
-
-
-
 const YDongusu = () => {
 
     const [title,setTitle] = useState('Merhaba Yaşam Döngüsü Fonksiyonu')
@@ -30,36 +27,45 @@ const YDongusu = () => {
     )
 }
 
-// class YasamDongusu extends React.Component {
+class YasamDongusu extends React.Component {
 
-//     constructor(props) {
-//         super(props)
+    constructor(props) {
+        super(props)
 
-//         this.state = {
-//             title: 'Merhaba Yaşam Döngüsü',
-//             onemsiz:1
-//         }
-//     }
+        this.state = {
+            title: 'Merhaba Yaşam Döngüsü',
+            onemsiz:1,
+            urunler:[
+                {
+                    title:'a'
+                },
+                {
+                    tile:'b'
+                }
+            ],
+
+        }
+    }
 
 
-//     componentDidMount() {
-//         console.log('Component Did mount calisti')
-//         setInterval(() => {
-//             this.setState({...this.state,onemsiz:2});
-//         }, 3000);
-//     }
+    componentDidMount() {
+        console.log('Component Did mount calisti')
+        setInterval(() => {
+            this.setState({...this.state,onemsiz:2});
+        }, 3000);
+    }
 
-//     componentWillUnmount(){
-//         console.log('Component will unmount calisti')
-//     }
+    componentWillUnmount(){
+        console.log('Component will unmount calisti')
+    }
 
-//     render() {
-//         console.log('Render olutor')
-//         return (
-//             <h1>{this.state.title}</h1>
-//         )
-//     }
+    render() {
+        console.log('Render olutor')
+        return (
+            <h1>{this.state.title}</h1>
+        )
+    }
 
-// }
+}
 
 export default YDongusu
